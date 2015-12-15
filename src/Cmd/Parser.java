@@ -3,16 +3,11 @@ package Cmd;
 import org.apache.commons.cli.*;
 
 public class Parser {
-    private int leftOperand;
-    private int rightOperand;
-    private String operation;
+    private Operation operation;
 
     public void divideBinaryOperation(String[] args) throws ParseException {
         if (args == null || args.length == 0) {
-            leftOperand = 0;
-            rightOperand = 0;
-            operation = "+";
-            return;
+            assert false : "Wrong args in function 'divideBinaryOperation'";
         }
         Options options = new Options();
         options.addOption(OptionBuilder.
@@ -41,21 +36,32 @@ public class Parser {
                 create("o"));
         CommandLineParser commandLineParser = new PosixParser();
         CommandLine commandLine = commandLineParser.parse(options, args);
+        int leftOperand, rightOperand;
         leftOperand = (Integer.parseInt(commandLine.getOptionValue("left_operand")));
         rightOperand = (Integer.parseInt(commandLine.getOptionValue("right_operand")));
-        operation = (commandLine.getOptionValue("operation"));
+        switch ((commandLine.getOptionValue("operation"))) {
+            case "+": {
+                operation = new Add(leftOperand, rightOperand);
+                break;
+            }
+            case "-": {
+                operation = new Sub(leftOperand, rightOperand);
+                break;
+            }
+            case "*": {
+                operation = new Multi(leftOperand, rightOperand);
+                break;
+            }
+            case "/": {
+                operation = new Div(leftOperand, rightOperand);
+                break;
+            }
+        }
     }
 
-    public String getOperation() {
+    public Operation getOperation() {
         return operation;
     }
 
-    public int getLeftOperand() {
-        return leftOperand;
-    }
-
-    public int getRightOperand() {
-        return rightOperand;
-    }
 }
 
