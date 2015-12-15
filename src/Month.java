@@ -21,6 +21,6 @@ public enum Month {
     }
 
     public int countDays() {
-        return daysCount[ordinal()];
+        return this.daysCount;
     }
 }
