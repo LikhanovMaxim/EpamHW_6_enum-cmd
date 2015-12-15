@@ -8,10 +8,10 @@ public class Cmd {
         try {
             Parser parser = new Parser();
             parser.divideBinaryOperation(args);
-            Operation operation = new Operation();
-            result = operation.getResult(parser.getLeftOperand(), parser.getRightOperand(), parser.getOperation());
+            Perform perform = new Perform();
+            result = perform.getResult(parser.getLeftOperand(), parser.getRightOperand(), parser.getOperation());
         } catch (ParseException e) {
-            System.out.println("There are no commands of this type. Please try again.");
+            System.out.println("'" + args + "' no commands of this type. See '--help'.");
             //e.printStackTrace();
         } finally {
             return result;

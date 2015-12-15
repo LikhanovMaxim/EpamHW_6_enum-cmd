@@ -1,6 +1,6 @@
 package Cmd;
 
-public class Operation {
+public class Perform {
     private int add(int leftOperand, int rightOperand) {
         return leftOperand + rightOperand;
     }
