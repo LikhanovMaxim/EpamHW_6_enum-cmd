@@ -2,6 +2,8 @@ package Cmd;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 import static org.junit.Assert.assertTrue;
 
 public class ParserTest {
@@ -11,12 +13,10 @@ public class ParserTest {
         String[] args = {"-l", "27", "-r", "4", "-o", "+"};
         Parser parser = new Parser();
         parser.divideBinaryOperation(args);
-        int leftOperandResult = 27;
-        int rightOperandResult = 4;
-        String operationResult = "+";
-        assertTrue(operationResult.equals(parser.getOperation()));
-        assertTrue(leftOperandResult == parser.getLeftOperand());
-        assertTrue(rightOperandResult == parser.getRightOperand());
+        Operation operation = parser.getOperation();
+        Operation resultOperation = new Add(27, 4);
+        assertTrue(resultOperation.getClass() == operation.getClass());
+        assertTrue(Arrays.equals(new int[]{27, 4}, operation.getOperands()));
     }
 
     @Test
@@ -24,12 +24,10 @@ public class ParserTest {
         String[] args = {"-l", "-27", "-r", "4", "-o", "-"};
         Parser parser = new Parser();
         parser.divideBinaryOperation(args);
-        int leftOperandResult = -27;
-        int rightOperandResult = 4;
-        String operationResult = "-";
-        assertTrue(operationResult.equals(parser.getOperation()));
-        assertTrue(leftOperandResult == parser.getLeftOperand());
-        assertTrue(rightOperandResult == parser.getRightOperand());
+        Operation operation = parser.getOperation();
+        Operation resultOperation = new Sub(-27, 4);
+        assertTrue(resultOperation.getClass() == operation.getClass());
+        assertTrue(Arrays.equals(new int[]{-27, 4}, operation.getOperands()));
     }
 
     @Test
@@ -37,12 +35,10 @@ public class ParserTest {
         String[] args = {"-l", "-27", "-r", "4", "-o", "*"};
         Parser parser = new Parser();
         parser.divideBinaryOperation(args);
-        int leftOperandResult = -27;
-        int rightOperandResult = 4;
-        String operationResult = "*";
-        assertTrue(operationResult.equals(parser.getOperation()));
-        assertTrue(leftOperandResult == parser.getLeftOperand());
-        assertTrue(rightOperandResult == parser.getRightOperand());
+        Operation operation = parser.getOperation();
+        Operation resultOperation = new Multi(-27, 4);
+        assertTrue(resultOperation.getClass() == operation.getClass());
+        assertTrue(Arrays.equals(new int[]{-27, 4}, operation.getOperands()));
     }
 
     @Test
@@ -50,52 +46,34 @@ public class ParserTest {
         String[] args = {"-l", "-27", "-r", "4", "-o", "/"};
         Parser parser = new Parser();
         parser.divideBinaryOperation(args);
-        int leftOperandResult = -27;
-        int rightOperandResult = 4;
-        String operationResult = "/";
-        assertTrue(operationResult.equals(parser.getOperation()));
-        assertTrue(leftOperandResult == parser.getLeftOperand());
-        assertTrue(rightOperandResult == parser.getRightOperand());
+        Operation operation = parser.getOperation();
+        Operation resultOperation = new Div(-27, 4);
+        assertTrue(resultOperation.getClass() == operation.getClass());
+        assertTrue(Arrays.equals(new int[]{-27, 4}, operation.getOperands()));
     }
 
-    @Test
-    public void wrongLeftOperandParser() throws Exception {
-//        try Exception
-    }
+//    @Test
+//    public void wrongLeftOperandParser() throws Exception {
+////        try Exception
+//    }
+//
+//    @Test
+//    public void wrongRightOperandParser() throws Exception {
+////        try Exception
+//    }
+//
+//    @Test
+//    public void wrongOperationOperandParser() throws Exception {
+////        try Exception
+//    }
 
-    @Test
-    public void wrongRightOperandParser() throws Exception {
-//        try Exception
-    }
+//    @Test
+//    public void emptyArgsParser() throws Exception {
+//       //assert
+//    }
 
-    @Test
-    public void wrongOperationOperandParser() throws Exception {
-//        try Exception
-    }
-
-    @Test
-    public void emptyArgsParser() throws Exception {
-        String[] args = {};
-        Parser parser = new Parser();
-        parser.divideBinaryOperation(args);
-        int leftOperandResult = 0;
-        int rightOperandResult = 0;
-        String operationResult = "+";
-        assertTrue(operationResult.equals(parser.getOperation()));
-        assertTrue(leftOperandResult == parser.getLeftOperand());
-        assertTrue(rightOperandResult == parser.getRightOperand());
-    }
-
-    @Test
-    public void nullArgsParser() throws Exception {
-        String[] args = null;
-        Parser parser = new Parser();
-        parser.divideBinaryOperation(args);
-        int leftOperandResult = 0;
-        int rightOperandResult = 0;
-        String operationResult = "+";
-        assertTrue(operationResult.equals(parser.getOperation()));
-        assertTrue(leftOperandResult == parser.getLeftOperand());
-        assertTrue(rightOperandResult == parser.getRightOperand());
-    }
+//    @Test
+//    public void nullArgsParser() throws Exception {
+//        assert
+//    }
 }
