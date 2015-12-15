@@ -11,9 +11,9 @@ public enum Month {
     OCTOBER(31),
     NOVEMBER(30),
     DECEMBER(31);
-    private final int daysCount;
-    Month(int daysCount) {
-        this.daysCount = daysCount;
+    private final int countDays;
+    Month(int countDays) {
+        this.countDays = countDays;
     }
 
     public Month next() {
@@ -21,6 +21,6 @@ public enum Month {
     }
 
     public int countDays() {
-        return this.daysCount;
+        return this.countDays;
     }
 }

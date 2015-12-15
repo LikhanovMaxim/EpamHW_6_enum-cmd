@@ -33,4 +33,5 @@ public class MonthTest {
     public void exceptionFebruaryCountDays() throws Exception {
         assertTrue(28 == Month.FEBRUARY.countDays());
     }
+
 }
